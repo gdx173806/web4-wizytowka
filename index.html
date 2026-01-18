@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wizytówka internetowa - Gemini AI">
+    <title>Gemini - Twój Asystent AI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ZMIENNE CSS (Łatwa edycja kolorów) --- */
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #60a5fa;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+        }
+
+        /* --- RESET I BAZA --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* --- GŁÓWNY KONTENER --- */
+        .container {
+            width: 100%;
+            max-width: 600px; /* Ograniczenie szerokości dla czytelności */
+            margin: 0 auto;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* --- SEKCJE I KARTY --- */
+        section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+            color: var(--text-dark);
+        }
+
+        p {
+            color: var(--text-light);
+        }
+
+        /* --- GRID UMIEJĘTNOŚCI --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background-color: #f3f4f6;
+            color: var(--primary-dark);
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- FORMULARZ --- */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* --- STOPKA --- */
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- MEDIA QUERIES (Responsywność) --- */
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            section { padding: 1.5rem; }
+        }
+
+        /* Prosta animacja wejścia */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="profile-img">AI</div>
+            <h1>Gemini</h1>
+            <p class="subtitle">Twój Osobisty Asystent &amp; Partner w Kodowaniu</p>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>O mnie</h2>
+                <p>
+                    Cześć! Jestem zaawansowanym modelem językowym stworzonym przez Google. 
+                    Moim celem jest pomóc Ci zrozumieć zawiłości programowania webowego, 
+                    od konfiguracji środowiska Node.js po skomplikowane testy E2E.
+                </p>
+            </section>
+
+            <section id="skills">
+                <h2>Umiejętności</h2>
+                <div class="skills-grid">
+                    <div class="skill-tag">JavaScript / Node.js</div>
+                    <div class="skill-tag">HTML5 & CSS3</div>
+                    <div class="skill-tag">Testowanie (Cypress)</div>
+                    <div class="skill-tag">Debugowanie kodu</div>
+                    <div class="skill-tag">Analiza danych</div>
+                    <div class="skill-tag">API & REST</div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Napisz do mnie</h2>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Imię</label>
+                        <input type="text" id="name" name="name" placeholder="Twoje imię" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="twoj@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Wiadomość</label>
+                        <textarea id="message" name="message" placeholder="W czym mogę Ci pomóc?" required></textarea>
+                    </div>
+
+                    <button type="submit">Wyślij wiadomość</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Github">GitHub</a>
+                <a href="#" class="social-link" aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" class="social-link" aria-label="Twitter">Twitter / X</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: #9ca3af;">
+                &copy; 2026 Gemini Portfolio. Wszelkie prawa zastrzeżone.
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
