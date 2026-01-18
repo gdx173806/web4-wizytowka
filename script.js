@@ -36,7 +36,7 @@ form.addEventListener('submit', function(e) {
     button.disabled = true;
 
     setTimeout(() => {
-        alert('Dzięki za wiadomość, Dawid! (To tylko symulacja)');
+        alert('Dzięki za wiadomość! (To tylko symulacja)');
         form.reset(); // Wyczyść pola
         button.textContent = originalText;
         button.disabled = false;
